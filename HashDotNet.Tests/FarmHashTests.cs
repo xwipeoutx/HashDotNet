@@ -27,36 +27,6 @@ namespace HashDotNet.Tests
         }
     }
 
-    [TestClass]
-    public class AvalancheTests
-    {
-        FarmHashStrategy _sut = new FarmHashStrategy(new FarmHash0To16BytesStrategy(), new FarmHash17To32BytesStrategy(), new FarmHash33To64BytesStrategy(), new FarmHashOver64BytesStrategy());
-
-        [TestMethod]
-        public void DoAvalancheTest()
-        {
-            var numInputBytes = 16;
-
-            var tester = new AvalancheTester<ulong>(_sut, new ULongBitOperator(), numInputBytes, sizeof(ulong));
-
-            var avalanceResult = tester.PerformAvalancheTest(10000);
-
-            float min = 1f, max = 0f;
-
-            for (var i = 0; i < numInputBytes * 8; i++)
-                for (var j = 0; j < 64; j++)
-                {
-                    var volatility = avalanceResult[i, j];
-
-                    min = Math.Min(volatility, min);
-                    max = Math.Max(volatility, max);
-                    volatility.ShouldBeGreaterThan(0.3f).And.ShouldBeLessThan(0.7f);
-                }
-
-            Console.WriteLine("Min={0}, Max={1}", min, max);
-        }
-    }
-
     public interface IBitOperator<T>
     {
         bool BitAt(T input, int position);
@@ -67,6 +37,13 @@ namespace HashDotNet.Tests
         public bool BitAt(ulong input, int position)
         {
             return ((input & (1ul << position)) != 0);
+        }
+    }
+    public class UIntBitOperator : IBitOperator<uint>
+    {
+        public bool BitAt(uint input, int position)
+        {
+            return ((input & (1u << position)) != 0);
         }
     }
 

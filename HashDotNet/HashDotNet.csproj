@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FarmHash\JenkinsHashStrategy.cs" />
     <Compile Include="Hash.cs" />
     <Compile Include="FarmHash\FarmHash0To16BytesStrategy.cs" />
     <Compile Include="FarmHash\FarmHash17To32BytesStrategy.cs" />
