@@ -34,9 +34,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FarmHash.cs" />
+    <Compile Include="Hash.cs" />
+    <Compile Include="FarmHash\FarmHash0To16BytesStrategy.cs" />
+    <Compile Include="FarmHash\FarmHash17To32BytesStrategy.cs" />
+    <Compile Include="FarmHash\FarmHash33To64BytesStrategy.cs" />
+    <Compile Include="FarmHash\FarmHashOver64BytesStrategy.cs" />
+    <Compile Include="FarmHash\FarmHashStrategy.cs" />
+    <Compile Include="HashUtils.cs" />
+    <Compile Include="IHashStrategy.cs" />
+    <Compile Include="Pair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
